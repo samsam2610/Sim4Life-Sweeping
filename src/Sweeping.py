@@ -32,7 +32,7 @@ def add_solver_setting(simulation):
     solver_settings.NumberOfThreads = 8
     solver_settings.Duration = 0.003, units.Seconds
 
-def titration_extractor(simulation):
+def titration_extractor(simulation, frequency, voltage):
     simulation_extractor_2 = simulation.Results()
     # Adding a new SensorExtractor
     sensor_extractor = simulation_extractor_2["Titration Sensor"]
@@ -51,7 +51,8 @@ def titration_extractor(simulation):
 
     results = titration_evaluator.TitrationData()
     for result in results:
-        print(result.TitrationFactor)
+        output_text = f"Frequency: {frequency}, TitrationFactor: {result.TitrationFactor}, Voltage: {result.TitrationFactor*voltage}"
+        print(output_text)
 
 def run_simulation_with_settings(FrequencySine=24000, AmplitudeSine=20.0, NumberOfHalfPeriodsSine=12000):
     import s4l_v1.model as model
@@ -110,7 +111,7 @@ def run_simulation_with_settings(FrequencySine=24000, AmplitudeSine=20.0, Number
     # Solver settings
     add_solver_setting(simulation)
 
-    document.AllSimulations.Add( simulation )
+    document.AllSimulations.Add(simulation)
 
     # Run the simulation
     simulation.RunSimulation()
@@ -119,7 +120,7 @@ def run_simulation_with_settings(FrequencySine=24000, AmplitudeSine=20.0, Number
     time.sleep(10)
     
     # Extract the values
-    titration_extractor(simulation)
+    titration_extractor(simulation, frequency=FrequencySine, voltage=AmplitudeSine)
     
 def main():
     frequenciesList = [10000, 15000, 20000]
