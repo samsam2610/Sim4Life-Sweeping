@@ -32,7 +32,7 @@ def add_solver_setting(simulation):
     solver_settings.NumberOfThreads = 8
     solver_settings.Duration = 0.003, units.Seconds
 
-def titration_extractor(simulation, frequency, voltage):
+def titration_extractor(simulation, frequency, amplitude):
     simulation_extractor_2 = simulation.Results()
     # Adding a new SensorExtractor
     sensor_extractor = simulation_extractor_2["Titration Sensor"]
@@ -48,11 +48,22 @@ def titration_extractor(simulation, frequency, voltage):
     import time
     while not titration_evaluator.Outputs["Titration"].Update():
         time.sleep(4)
+    
 
     results = titration_evaluator.TitrationData()
     for result in results:
-        output_text = f"Frequency: {frequency}, TitrationFactor: {result.TitrationFactor}, Voltage: {result.TitrationFactor*voltage}"
+        output_text = f"Frequency: {frequency}, Neuron Name: {result.NeuronName} TitrationFactor: {result.TitrationFactor}, Threshold voltage: {result.TitrationFactor*amplitude}"
         print(output_text)
+
+    # Save the results to a file
+    with open("titration_results.csv", "a") as file:
+        # Write the header if the file is empty
+        if file.tell() == 0:
+            file.write("Neuron Name,Frequency,Titration Factor,Threshold Voltage,Time Of First Spike,Location of First Spike\n")
+        # Write the results
+        for result in results:
+            file.write(f"{result.NeuronName},{frequency},{result.TitrationFactor},{result.TitrationFactor*amplitude},{result.TimeOfFirstSpike},{result.LocationOfFirstSpike}\n")
+
 
 def run_simulation_with_settings(FrequencySine=24000, AmplitudeSine=20.0, NumberOfHalfPeriodsSine=12000):
     import s4l_v1.model as model
@@ -120,7 +131,7 @@ def run_simulation_with_settings(FrequencySine=24000, AmplitudeSine=20.0, Number
     time.sleep(10)
     
     # Extract the values
-    titration_extractor(simulation, frequency=FrequencySine, voltage=AmplitudeSine)
+    titration_extractor(simulation, frequency=FrequencySine, amplitude=AmplitudeSine)
     
 def main():
     frequenciesList = [10000, 15000, 20000]
