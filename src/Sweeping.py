@@ -134,9 +134,9 @@ def run_simulation_with_settings(FrequencySine=24000, AmplitudeSine=20.0, Number
     titration_extractor(simulation, frequency=FrequencySine, amplitude=AmplitudeSine)
     
 def main():
-    frequenciesList = [10000, 15000, 20000]
+    frequenciesList = [20, 40, 60, 80, 160, 240, 320, 480, 640, 800, 1200, 1500, 1700, 3000, 6000, 12000, 24000]
     halfPeriodsList = frequenciesList
-    amplitudesList = [20, 20, 20]
+    amplitudesList = [20, 20, 20, 10, 10, 20, 10, 10, 10, 20, 10, 10, 10, 10, 10, 10, 10]
 
     for frequency, period, amplitude in zip(frequenciesList, halfPeriodsList, amplitudesList):
         run_simulation_with_settings(FrequencySine=frequency, NumberOfHalfPeriodsSine=period, AmplitudeSine = amplitude)

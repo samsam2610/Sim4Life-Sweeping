@@ -1,0 +1,39 @@
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+*.so
+
+# Logs
+*.log
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.synctex.gz
+
+# Backup files
+*.bak
+*.swp
+*.swo
+*.tmp
