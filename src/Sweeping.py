@@ -72,20 +72,24 @@ def run_simulation_with_settings(FrequencySine=24000, AmplitudeSine=20.0, Number
     simulation = neuron.Simulation()
 
     # Mapping the components and entities
+    # Replace with your settings here - Part 1
     entity__nerve_dorsal_root_spinal_c5__brachial_plexus_radial_right_6_sweeney_neuron2000um = model.AllEntities()["Nerve_dorsal_root_spinal_C5_Brachial_plexus_radial_right_ 6 [Sweeney Neuron 20.00um]"]
     entity__nerve_ventral_root_spinal_t1__brachial_plexus_ulnar_right_6_sweeney_neuron2000um = model.AllEntities()["Nerve_ventral_root_spinal_T1_Brachial_plexus_ulnar_right_ 6 [Sweeney Neuron 20.00um]"]
     entity__nerve_ventral_root_spinal_c8__brachial_plexus_median_right_3_sweeney_neuron2000um = model.AllEntities()["Nerve_ventral_root_spinal_C8_Brachial_plexus_median_right_ 3 [Sweeney Neuron 20.00um]"]
     
     # Link source
+    # Replace with your settings here - Part 2
     link_0_overall_field = document.AllSimulations["EM Simulations"].AllComponents["Overall Field"]
 
     # Add Axon settings (automatic)
+    # Replace with your settings here - Part 3
     automatic_axon_neuron_settings = neuron.AutomaticAxonNeuronSettings()
     components = [entity__nerve_dorsal_root_spinal_c5__brachial_plexus_radial_right_6_sweeney_neuron2000um, entity__nerve_ventral_root_spinal_c8__brachial_plexus_median_right_3_sweeney_neuron2000um, entity__nerve_ventral_root_spinal_t1__brachial_plexus_ulnar_right_6_sweeney_neuron2000um]
     simulation.Add(automatic_axon_neuron_settings, components)
 
     # Add points sensor settings
     # Add points sensor
+    # Replace with your settings here - Part 4
     # Ventral Spinal T1 Brachial Plexus Ulnar right
     point_sensor_settings = simulation.AddPointSensor([entity__nerve_ventral_root_spinal_t1__brachial_plexus_ulnar_right_6_sweeney_neuron2000um])
     point_sensor_settings.SectionName = u"node[114]"
