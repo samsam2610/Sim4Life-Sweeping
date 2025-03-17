@@ -11,6 +11,7 @@
 \usepackage{float}
 \usepackage{titling}
 \usepackage{multicol}
+\usepackage{subcaption}
 \graphicspath{ {./images/} }
 
 \geometry{margin=0.5in}
@@ -101,7 +102,7 @@ where:
     \item Amplitude: 10V or 20V
     \item Number Of Half Period Sine: 1/2 of the chosen frequency
     \item Solver Duration: $0.003s$
-    \item Time Step: $0.00025s$
+    \item Time Step: $0.0025s$
 \end{itemize}
 \end{multicols}
 
@@ -115,13 +116,33 @@ where:
 \noindent The codes for sweeping different pairs of frequency and intensity and for generating this report are available in the following Github repository: \url{https://github.com/samsam2610/Sim4Life-Sweeping}
 
 \section*{Result}
-\noindent Example output of the simulation at $24kHz$ is shown below.
+\noindent The following figures and tables show the example result at $24kHz$ and the full results of the simulations as pair of frequency and titration factor of an axon.
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.15]{{titration_factor.png}}
-    \caption{Example Output of the Simulation}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[scale=0.11]{titration_factor.png}
+        \caption{Titration Factor of different axons} 
+        \label{fig:titration}
+    \end{subfigure}
+    \vfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[scale=0.10]{source_signal.png}
+        \caption{Plot of the source signal}
+        \label{fig:source_signal}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[scale=0.10]{action_potential_registered.png}
+        \caption{Action Potential Registered at different nodes along the axons}
+        \label{fig:action_potential}
+    \end{subfigure}
+    \caption{Example output of the simulation at $24kHz$.}
+    \label{fig:combined}
 \end{figure}
-\noindent The following tables show the full results of the simulations as pair of frequency and titration factor of an axon.
+
 \begin{table}[H]
     \centering
     \scriptsize
@@ -143,7 +164,7 @@ where:
     640	 &0.0349121	 &0.582031	 &0.882812 \\
     \bottomrule
     \end{tabular}
-    \caption{Parameter Sets 1}
+    \caption{Outputs 1}
     \end{minipage}\hfill
     % Second half of the table
     \begin{minipage}[t]{0.45\textwidth}
@@ -162,16 +183,17 @@ where:
     24000	&0.0585938	&1.17188	&1.73438 \\
     \bottomrule
     \end{tabular}
-    \caption{Parameter Sets 2}
+    \caption{Outputs 2}
     \end{minipage}
 \end{table}
 
 \noindent By multiplying the titration factor by the stimulated voltage and the intensity of the modulated signal, we can calculate the threshold intensity in voltage required to trigger an action potential in the axon. The following plot shows the relationship between the frequency and the threshold intensity for each of the three axons.
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.15]{{plotted_results.png}}
+    \includegraphics[scale=0.135]{{plotted_results.png}}
     \caption{Threshold Intensity vs Frequency}
 \end{figure}
+
 
 
 \end{document}
